@@ -7,6 +7,7 @@ import Controls from "./Controls";
 import SearchBox from "./SearchBox";
 import SearchInput from "./SearchInput";
 import Button from "./Button";
+import ActionModal from "./ActionModal";
 
 export {
   Input,
@@ -17,5 +18,6 @@ export {
   Controls,
   SearchBox,
   SearchInput,
-  Button
+  Button,
+  ActionModal
 };

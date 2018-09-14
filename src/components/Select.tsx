@@ -112,6 +112,7 @@ export default class Select extends PureComponent<SelectProps, SelectState> {
       keyExtractor,
       type,
       disabled,
+      label,
       ...rest
     } = this.props;
 
@@ -128,16 +129,23 @@ export default class Select extends PureComponent<SelectProps, SelectState> {
           }
         >
           <View>
-            <Input
-              fixLabelAtTop
-              placeholder={placeholder}
-              value={this.getValue()}
-              onChange={noop}
-              required={required}
-              errorMessage={errorMessage}
-              readOnly
-              disabled={disabled}
-            />
+            {label ? (
+              label({
+                value: this.getValue(),
+                props: this.props
+              })
+            ) : (
+              <Input
+                fixLabelAtTop
+                placeholder={placeholder}
+                value={this.getValue()}
+                onChange={noop}
+                required={required}
+                errorMessage={errorMessage}
+                readOnly
+                disabled={disabled}
+              />
+            )}
             {!disabled && (
               <View style={styles.dropdownIcon}>
                 <Icon
