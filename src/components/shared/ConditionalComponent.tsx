@@ -9,7 +9,6 @@ interface ConditionalComponentProps {
 const ConditionalComponent: React.FunctionComponent<
   ConditionalComponentProps
 > = ({ conditional, children }) => {
-  debugger;
   if (!conditional) return null;
   if (typeof conditional === "number" || typeof conditional === "string") {
     return children(conditional);

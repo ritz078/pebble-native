@@ -17,6 +17,7 @@ import Banner from "./Banner";
 import ImageThumbnail from "./ImageThumbnail";
 import Rating from "./Rating";
 import Avatar from "./Avatar";
+import Popup from "./Popup";
 
 export {
   Input,
@@ -37,5 +38,6 @@ export {
   Banner,
   ImageThumbnail,
   Rating,
-  Avatar
+  Avatar,
+  Popup
 };

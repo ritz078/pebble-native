@@ -21,7 +21,8 @@ const styles = StyleSheet.create({
     borderTopColor: colors.gray.lighter,
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: "center"
+    alignItems: "center",
+    backgroundColor: colors.white.base
   },
   imageWrapper: {
     width: 150,

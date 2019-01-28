@@ -13,3 +13,4 @@ import "./banner.story";
 import "./imageThumbnail.story";
 import "./rating.story";
 import "./avatar.story";
+import "./popup.story";

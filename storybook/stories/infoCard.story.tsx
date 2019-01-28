@@ -52,27 +52,29 @@ storiesOf("InfoCard", module)
         <InfoCard
           title="Additional Client Info"
           content={
-            <View style={{ marginTop: 8 }}>
-              <List
-                style={{ paddingVertical: 8 }}
-                title="Age"
-                description="Below 25"
-              />
-              <List
-                style={{ paddingVertical: 8 }}
-                title="Ethnicity"
-                description="Marathi"
-              />
-              <List
-                style={{ paddingVertical: 8 }}
-                title="Residential Address"
-                description="B-303, Piramal Ananya, Ambedkar Road, Worli"
-              />
-              <List
-                style={{ paddingVertical: 8 }}
-                title="Residential Address"
-                description="B-303, Piramal Ananya, Ambedkar Road, Worli"
-              />
+            <View>
+              <View style={{ marginTop: 8 }}>
+                <List
+                  style={{ paddingVertical: 8 }}
+                  title="Age"
+                  description="Below 25"
+                />
+                <List
+                  style={{ paddingVertical: 8 }}
+                  title="Ethnicity"
+                  description="Marathi"
+                />
+                <List
+                  style={{ paddingVertical: 8 }}
+                  title="Residential Address"
+                  description="B-303, Piramal Ananya, Ambedkar Road, Worli"
+                />
+                <List
+                  style={{ paddingVertical: 8 }}
+                  title="Residential Address"
+                  description="B-303, Piramal Ananya, Ambedkar Road, Worli"
+                />
+              </View>
             </View>
           }
           linkText="View More"
