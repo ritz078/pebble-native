@@ -16,7 +16,7 @@ export default class App extends Component<{}, AppState> {
     await Font.loadAsync({
       anarock_medium: require("./assets/fonts/anarock_medium.ttf"),
       anarock_regular: require("./assets/fonts/anarock_regular.ttf"),
-      pebble: require("./node_modules/@anarock/pebble/native/icons/pebble.ttf")
+      pebble: require("./node_modules/pebble-shared/dist/fonts/pebble.ttf")
     });
 
     this.setState({

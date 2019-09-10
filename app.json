@@ -18,9 +18,6 @@
       "fallbackToCacheTimeout": 0
     },
     "assetBundlePatterns": ["**/*"],
-    "ios": {
-      "supportsTablet": true
-    },
     "entryPoint": "./node_modules/expo/AppEntry"
   }
 }
