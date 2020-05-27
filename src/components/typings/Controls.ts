@@ -18,14 +18,6 @@ export interface CommonControlsProps<OptionType> {
   keyExtractor?: (item: OptionType) => string | number;
   renderLabel?: (args: { item: OptionType }) => React.ReactNode;
   disabled?: boolean | (string | number)[];
-  renderElement?: (
-    args: {
-      item: OptionType;
-      isSelected: boolean;
-      renderLabel?: (args: { item: OptionType }) => React.ReactNode;
-    },
-    props: ControlsProps<OptionType>
-  ) => React.ReactNode;
 }
 
 export interface RadioControlsProps<OptionType>
@@ -38,6 +30,14 @@ export interface RadioControlsProps<OptionType>
     },
     props: RadioControlsProps<OptionType>
   ) => void;
+  renderElement?: (
+    args: {
+      item: OptionType;
+      isSelected: boolean;
+      renderLabel?: (args: { item: OptionType }) => React.ReactNode;
+    },
+    props: RadioControlsProps<OptionType>
+  ) => React.ReactNode;
 }
 
 export interface CheckboxControlsProps<OptionType>
@@ -50,6 +50,14 @@ export interface CheckboxControlsProps<OptionType>
     },
     props: CheckboxControlsProps<OptionType>
   ) => void;
+  renderElement?: (
+    args: {
+      item: OptionType;
+      isSelected: boolean;
+      renderLabel?: (args: { item: OptionType }) => React.ReactNode;
+    },
+    props: CheckboxControlsProps<OptionType>
+  ) => React.ReactNode;
 }
 
 export type ControlsProps<OptionType> =
