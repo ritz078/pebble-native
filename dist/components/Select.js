@@ -119,6 +119,7 @@ export default class Select extends React.PureComponent {
       footer,
       showFooterButton,
       testIdPrefix,
+      rowRenderElement,
       ...rest
     } = this.props;
     const props = this.props;
@@ -139,12 +140,18 @@ export default class Select extends React.PureComponent {
         React.createElement(
           View,
           null,
-          label
-            ? label({
-                value: this.getValue(),
-                props: this.props,
-                toggle: this.toggle
-              })
+          props.label
+            ? props.type === "checkbox" // Both these conditions are the same, but they are there just to make Typescript happy
+              ? props.label({
+                  value: this.getValue(),
+                  props: props,
+                  toggle: this.toggle
+                })
+              : props.label({
+                  value: this.getValue(),
+                  props: props,
+                  toggle: this.toggle
+                })
             : React.createElement(Input, {
                 fixLabelAtTop: true,
                 placeholder: placeholder || "",
@@ -203,7 +210,8 @@ export default class Select extends React.PureComponent {
                     selected: this.state.selectedCheckbox,
                     testIdPrefix: testIdPrefix,
                     options: options,
-                    keyExtractor: keyExtractor
+                    keyExtractor: keyExtractor,
+                    rowRenderElement: props.rowRenderElement
                   },
                   rest,
                   { onSelect: this.onMultiSelect }
@@ -217,7 +225,8 @@ export default class Select extends React.PureComponent {
                     selected: props.selected,
                     testIdPrefix: testIdPrefix,
                     options: options,
-                    keyExtractor: keyExtractor
+                    keyExtractor: keyExtractor,
+                    rowRenderElement: props.rowRenderElement
                   },
                   rest,
                   { onSelect: this.onSingleSelecct }

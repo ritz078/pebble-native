@@ -10,6 +10,7 @@ export default class Options<OptionType> extends React.Component<
   };
   private onRadioSelect;
   private onCheckboxSelect;
-  private renderElement;
+  private checkboxRenderElement;
+  private radioRenderElement;
   render(): JSX.Element;
 }

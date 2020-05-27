@@ -88,7 +88,6 @@ export default class Controls extends React.PureComponent {
   render() {
     const {
       data,
-      renderElement,
       keyExtractor,
       style,
       ripple,
@@ -96,6 +95,7 @@ export default class Controls extends React.PureComponent {
       renderLabel,
       testIdPrefix
     } = this.props;
+    const props = this.props;
     const Touchable =
       ripple && Platform.OS === "android"
         ? TouchableNativeFeedback
@@ -119,14 +119,23 @@ export default class Controls extends React.PureComponent {
           React.createElement(
             View,
             { style: [styles.itemWrapper, style.itemWrapper] },
-            renderElement(
-              {
-                item,
-                isSelected: this.isSelected(item),
-                renderLabel
-              },
-              this.props
-            )
+            props.type === "checkbox"
+              ? props.renderElement(
+                  {
+                    item,
+                    isSelected: this.isSelected(item),
+                    renderLabel
+                  },
+                  props
+                )
+              : props.renderElement(
+                  {
+                    item,
+                    isSelected: this.isSelected(item),
+                    renderLabel
+                  },
+                  props
+                )
           )
         );
       })

@@ -13,11 +13,6 @@ export interface CommonSelectProps<OptionType>
   disabled?: boolean;
   title?: string;
   onClose?: (e?: GestureResponderEvent) => void;
-  label?: (args: {
-    value: string;
-    props: SelectProps<OptionType>;
-    toggle: () => void;
-  }) => React.ReactNode;
   showFooterButton?: boolean;
   autoClose?: boolean;
   footer?: React.ReactNode;
@@ -26,11 +21,21 @@ export interface RadioSelectProps<OptionType>
   extends RadioOptionProps<OptionType>,
     CommonSelectProps<OptionType> {
   valueExtractor: (item: OptionType) => string;
+  label?: (args: {
+    value: string;
+    props: RadioSelectProps<OptionType>;
+    toggle: () => void;
+  }) => React.ReactNode;
 }
 export interface CheckboxSelectProps<OptionType>
   extends CheckboxOptionProps<OptionType>,
     CommonSelectProps<OptionType> {
   valueExtractor: (items: OptionType[]) => string;
+  label?: (args: {
+    value: string;
+    props: CheckboxSelectProps<OptionType>;
+    toggle: () => void;
+  }) => React.ReactNode;
 }
 export declare type SelectProps<OptionType> =
   | RadioSelectProps<OptionType>

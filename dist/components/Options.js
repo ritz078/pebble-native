@@ -80,10 +80,31 @@ export default class Options extends React.Component {
         props.onSelect(selectedOptions);
       }
     };
-    this.renderElement = args => {
-      // @ts-ignore
-      const renderElement = this.props.rowRenderElement || rowRenderElement;
-      return renderElement && renderElement(args, this.props);
+    // private renderElement: ControlsProps<OptionType>["renderElement"] = args => {
+    //   const renderElement = this.props.rowRenderElement || rowRenderElement;
+    //   return renderElement && renderElement(args, this.props);
+    // };
+    this.checkboxRenderElement = args => {
+      const props = this.props;
+      if (props.type === "checkbox") {
+        // prettier-ignore
+        return props.rowRenderElement
+                    ? props.rowRenderElement(args, props)
+                    : (
+                    // @ts-ignore
+                    rowRenderElement(args, props));
+      }
+    };
+    this.radioRenderElement = args => {
+      const props = this.props;
+      if (props.type !== "checkbox") {
+        // prettier-ignore
+        return props.rowRenderElement
+                    ? props.rowRenderElement(args, props)
+                    : (
+                    // @ts-ignore
+                    rowRenderElement(args, props));
+      }
     };
   }
   render() {
@@ -92,7 +113,6 @@ export default class Options extends React.Component {
     const commonProps = {
       testIdPrefix,
       style: controlStyle,
-      renderElement: this.renderElement,
       data: options,
       keyExtractor,
       ripple: true
@@ -114,7 +134,8 @@ export default class Options extends React.Component {
               {
                 type: "checkbox",
                 selected: props.selected,
-                onChange: this.onCheckboxSelect
+                onChange: this.onCheckboxSelect,
+                renderElement: this.checkboxRenderElement
               },
               commonProps
             )
@@ -125,7 +146,8 @@ export default class Options extends React.Component {
               {
                 type: "radio",
                 selected: props.selected,
-                onChange: this.onRadioSelect
+                onChange: this.onRadioSelect,
+                renderElement: this.radioRenderElement
               },
               commonProps
             )
