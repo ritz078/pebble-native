@@ -5,7 +5,7 @@ import colors from "../theme/colors";
 import Controls from "./Controls";
 import Text from "./Text";
 import Icon from "pebble-shared/native/Icon";
-import { ControlsProps } from "./typings/Controls";
+import { CheckboxControlsProps, RadioControlsProps } from "./typings/Controls";
 
 const styles = StyleSheet.create({
   optionWrapper: {
@@ -102,12 +102,40 @@ export default class Options<OptionType> extends React.Component<
     }
   };
 
-  private renderElement: ControlsProps<OptionType>["renderElement"] = args => {
-    // @ts-ignore
-    const renderElement: OptionsProps<OptionType>["rowRenderElement"] =
-      this.props.rowRenderElement || rowRenderElement;
+  // private renderElement: ControlsProps<OptionType>["renderElement"] = args => {
+  //   const renderElement = this.props.rowRenderElement || rowRenderElement;
 
-    return renderElement && renderElement(args, this.props);
+  //   return renderElement && renderElement(args, this.props);
+  // };
+
+  private checkboxRenderElement: CheckboxControlsProps<
+    OptionType
+  >["renderElement"] = args => {
+    const props = this.props;
+    if (props.type === "checkbox") {
+      // prettier-ignore
+      return props.rowRenderElement
+        ? props.rowRenderElement(args, props)
+        : (
+          // @ts-ignore
+          rowRenderElement(args, props)
+        );
+    }
+  };
+
+  private radioRenderElement: RadioControlsProps<
+    OptionType
+  >["renderElement"] = args => {
+    const props = this.props;
+    if (props.type !== "checkbox") {
+      // prettier-ignore
+      return props.rowRenderElement
+        ? props.rowRenderElement(args, props)
+        : (
+          // @ts-ignore
+          rowRenderElement(args, props)
+        );
+    }
   };
 
   render() {
@@ -116,7 +144,6 @@ export default class Options<OptionType> extends React.Component<
     const commonProps = {
       testIdPrefix,
       style: controlStyle,
-      renderElement: this.renderElement,
       data: options,
       keyExtractor,
       ripple: true
@@ -135,6 +162,7 @@ export default class Options<OptionType> extends React.Component<
             type="checkbox"
             selected={props.selected}
             onChange={this.onCheckboxSelect}
+            renderElement={this.checkboxRenderElement}
             {...commonProps}
           />
         ) : (
@@ -142,6 +170,7 @@ export default class Options<OptionType> extends React.Component<
             type="radio"
             selected={props.selected}
             onChange={this.onRadioSelect}
+            renderElement={this.radioRenderElement}
             {...commonProps}
           />
         )}
